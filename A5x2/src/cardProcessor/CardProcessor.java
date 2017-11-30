@@ -23,7 +23,7 @@ public class CardProcessor {
     		cardSet.add(cards[i]);
     	}
     	
-    	return cardSet.toArray(new Card[cardSet.size()]);
+    	return cardSet.toArray(new Card[0]);
     }
     
 }//class
