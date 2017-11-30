@@ -1,5 +1,9 @@
 package component;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 public class ParallelResistor extends ComposedResistor{
 	
 	public ParallelResistor(ResistanceNet... subnets) {
@@ -27,10 +31,19 @@ public class ParallelResistor extends ComposedResistor{
 	@Override
 	public double getResistance() {
 		double resistance = 0;
+		ArrayList<Double> resistanceValues = new ArrayList<Double>();
 		for(ResistanceNet subnet : getSubNets()){
-			resistance += (1/subnet.getResistance());
+		    if(subnet.getResistance() > 0)
+		        resistanceValues.add(1/subnet.getResistance());
 		}
 		
+		Collections.sort(resistanceValues);
+		
+		for(Double value : resistanceValues) {
+		    resistance += value;		    
+		}
+		
+		assert resistance > 0 : "Man darf nicht durch 0 teilen!";
 		return 1/resistance; 
 	}
 }

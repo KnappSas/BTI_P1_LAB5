@@ -1,12 +1,12 @@
 package component;
 
-public abstract class ComposedResistor extends ResistanceNet {
+public abstract class ComposedResistor implements ResistanceNet {
 
 	private ResistanceNet[] subnets = null;
 	
 	
 	
-	public ComposedResistor(ResistanceNet... subnets) {
+	protected ComposedResistor(ResistanceNet... subnets) {
 		this.subnets = subnets;
 	}
 	
@@ -24,6 +24,10 @@ public abstract class ComposedResistor extends ResistanceNet {
 		return count;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public ResistanceNet[] getSubNets() {
 		return subnets;
 	}

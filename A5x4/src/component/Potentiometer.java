@@ -1,16 +1,23 @@
 package component;
 
 public class Potentiometer extends Resistor{
-
+    /**
+     * @param name name of potentiometer
+     * @param resistance Variable resistance value which needs to be casted to VariableResistanceValue to be used
+     */
 	public Potentiometer(String name, double resistance) {
-		super(name, resistance);
+		super(name, new VariableResistanceValue(resistance));
 	}
 	
+	/**
+	 * Resistance is initialized with 0
+	 * @param name name of potentiometer
+	 */
 	public Potentiometer(String name) {
-		super(name, 0);
+		super(name, new VariableResistanceValue(0));
 	}
 	
 	public void setResistance(double resistance) {
-		this.resistance = resistance;
+		((VariableResistanceValue) this.resistance).setResistance(resistance);
 	}
 }

@@ -1,17 +1,27 @@
 package component;
 
-public class Resistor extends ResistanceNet {
+public class Resistor implements ResistanceNet {
 
-	protected String name;
+    protected final ResistanceValue resistance;
+	private String name;
 	
+	protected Resistor(String name, ResistanceValue resistanceValue) {
+	    this.name = name;
+	    resistance = resistanceValue;
+	}
+	
+	/**
+	 * 
+	 * @param name name of resistor e.g. R1
+	 * @param resistance resistance larger or equal 0
+	 */
 	public Resistor(String name, double resistance) {
-		this.name = name;
-		this.resistance = resistance;
+	    this(name, new ConstantResistanceValue(resistance));
 	}
 
 	@Override
 	public double getResistance() {
-		return resistance;
+		return resistance.getResistance();
 	}
 
 	/**
